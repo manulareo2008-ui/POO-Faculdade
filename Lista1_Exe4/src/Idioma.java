@@ -1,0 +1,3 @@
+
+public enum Idioma {
+	ESPANHOL, INGLES, ALEMAO, PORTUGUES, FRANCES}
