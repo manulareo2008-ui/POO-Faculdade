@@ -17,4 +17,3 @@ public class Autor {
 		this.cpf = cpf;
 	}
 }
-
