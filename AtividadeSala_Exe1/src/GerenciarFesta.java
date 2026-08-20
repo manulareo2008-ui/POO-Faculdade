@@ -67,7 +67,7 @@ public class GerenciarFesta {
 	private void listarTema() {
 		for (int i = 0; i < qtdAtualTema; i++) {
 			
-			System.out.println("Nome: " + temas[i].getNome() + " - R$" + 
+			System.out.println(i + "Nome: " + temas[i].getNome() + " - R$" + 
 					temas[i].getValorAluguel() + "\nToalha: " + 
 					temas[i].getCorToalha());
 			
@@ -84,7 +84,7 @@ public class GerenciarFesta {
 
 	private void listarCliente() {
 		for (int i = 0; i < qtdAtualCliente; i++) {
-			System.out.println("Nome: " + clientes[i].getNome() + " - " + 
+			System.out.println(i + "Nome: " + clientes[i].getNome() + " - " + 
 						clientes[i].getTelefone() + "\nData de cadastro: " + 
 						clientes[i].getDataPrimeiraCompra().toString());
 		}
@@ -92,16 +92,32 @@ public class GerenciarFesta {
 	}
 
 	private void inserirAluguel() {
-		s = new Scanner(System.in);
-		Aluguel[] alugueis = new Aluguel[30];
-		
-		System.out.println("Qual a data do aluguel: ");
-		Date dataAluguel = s.nextDate();
-		System.out.println("Qual a hora de inicio: ");
+		System.out.println("Hora inicio: ");
 		int horaInicio = s.nextInt();
-		System.out.println("Qual a hora de fim: ");
-		int horaFinal = s.nextInt();
 		
+		System.out.println("Hora fim: ");
+		int horaFim = s.nextInt();
+		
+		System.out.println("Endereço: ");
+		String endereco = s.next();
+
+		System.out.println("Escolha um cliente da lista: ");
+		listarCliente();
+		int indiceCliente = s.nextInt();
+		
+		System.out.println("Escolha um tema da lista: ");
+		listarTema();
+		int indiceTema = s.nextInt();
+		
+		Aluguel a = new Aluguel();
+		a.setHoraInicio(horaInicio);
+		a.setHoraFim(horaFim);
+		a.setEndereco(endereco);
+		a.setCliente(clientes[indiceCliente]); 
+		a.setTema(temas[indiceTema]);
+		
+		alugueis[qtdAtualAluguel] = a;
+		qtdAtualAluguel++;
 	}
 
 	private void inserirTema() {
