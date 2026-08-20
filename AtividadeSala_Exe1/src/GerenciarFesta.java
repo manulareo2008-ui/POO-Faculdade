@@ -60,9 +60,9 @@ public class GerenciarFesta {
 	}
 
 	private void listarAluguel() {
-		// TODO Auto-generated method stub
 		
 	}
+		
 
 	private void listarTema() {
 		for (int i = 0; i < qtdAtualTema; i++) {
