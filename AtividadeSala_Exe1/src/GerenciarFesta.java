@@ -60,60 +60,97 @@ public class GerenciarFesta {
 	}
 
 	private void listarAluguel() {
-		
-	}
-		
-
-	private void listarTema() {
-		for (int i = 0; i < qtdAtualTema; i++) {
+		for (int i = 0; i < qtdAtualAluguel; i++) {
+			System.out.println(alugueis[i].getHoraInicio() + " - " + alugueis[i].getHoraFim() +
+					"\n"+ alugueis[i].getEndereco());
+			System.out.println("Cliente: ");
+			listarCliente(alugueis[i].getCliente().getNome());
 			
-			System.out.println(i + "Nome: " + temas[i].getNome() + " - R$" + 
-					temas[i].getValorAluguel() + "\nToalha: " + 
-					temas[i].getCorToalha());
-			
-			for (int j = 0; j < temas[i].getItens().length; j++) {
-				
-				Item item = temas[i].getItens()[j];
-				if (item != null) {
-					System.out.println(item.getNome() + "  " + item.getQtd());
-				}
-			}
+			System.out.println("Tema: " + alugueis[i].getTema().getNome());
+			System.out.println("Item do tema: " + alugueis[i].getTema().getItens()[0].getNome());
 		}
 		
+	}
+	
+	
+	//Polimorfismo
+	//@Overload
+	private void listarTema() {
+		for (int i = 0; i < qtdAtualTema; i++) {
+			listarTema(i);
+		}
+	}
+	//Polimorfismo
+    //@Overload
+	private void listarTema(int codigo) {
+		System.out.println(codigo + " Nome: " + temas[codigo].getNome() + " - R$" + 
+				temas[codigo].getValorAluguel() + "\nToalha: " + 
+				temas[codigo].getCorToalha());
+		
+		for (int j = 0; j < temas[codigo].getItens().length; j++) {
+			
+			Item item = temas[codigo].getItens()[j];
+			if (item != null) {
+				System.out.println(item.getNome() + "  " + item.getQtd());
+			}
+			
+			
+		}
+		System.out.println();
 	}
 
 	private void listarCliente() {
 		for (int i = 0; i < qtdAtualCliente; i++) {
-			System.out.println(i + "Nome: " + clientes[i].getNome() + " - " + 
-						clientes[i].getTelefone() + "\nData de cadastro: " + 
-						clientes[i].getDataPrimeiraCompra().toString());
+			listarCliente(i);
+			System.out.println();
 		}
 		
 	}
 
+	private void listarCliente(int codigo) {
+		System.out.println(codigo + " Nome: " + clientes[codigo].getNome() + " - " + 
+				clientes[codigo].getTelefone() + "\nData de cadastro: " + 
+				clientes[codigo].getDataPrimeiraCompra().toString());
+	}
+	
+	private void listarCliente(String nome) {
+		for (int codigo = 0; codigo < qtdAtualCliente; codigo++) {
+			Cliente c1 = clientes[codigo];
+			if (c1 != null && c1.getNome().equals(nome)) {
+				System.out.println(codigo + " Nome: " + clientes[codigo].getNome() + " - " + 
+						clientes[codigo].getTelefone() + "\nData de cadastro: " + 
+						clientes[codigo].getDataPrimeiraCompra().toString());
+				return;
+			}
+		}
+	}
+	
 	private void inserirAluguel() {
-		System.out.println("Hora inicio: ");
-		int horaInicio = s.nextInt();
+		System.out.print("Hora inicio: ");
+		int hraInicio = s.nextInt();
 		
-		System.out.println("Hora fim: ");
-		int horaFim = s.nextInt();
+		System.out.print("Hora fim: ");
+		int hraFim = s.nextInt();
 		
-		System.out.println("Endereço: ");
+		System.out.print("Endereço: ");
 		String endereco = s.next();
-
+		
 		System.out.println("Escolha um cliente da lista: ");
 		listarCliente();
 		int indiceCliente = s.nextInt();
 		
-		System.out.println("Escolha um tema da lista: ");
-		listarTema();
-		int indiceTema = s.nextInt();
+		int indiceTema = 0;
+		do {
+			System.out.println("Escolha um tema da lista: ");
+			listarTema();
+			indiceTema = s.nextInt();
+		} while (indiceTema < 0 && indiceTema > qtdAtualTema);
 		
 		Aluguel a = new Aluguel();
-		a.setHoraInicio(horaInicio);
-		a.setHoraFim(horaFim);
+		a.setHoraInicio(hraInicio);
+		a.setHoraFim(hraFim);
 		a.setEndereco(endereco);
-		a.setCliente(clientes[indiceCliente]); 
+		a.setCliente(clientes[indiceCliente]);
 		a.setTema(temas[indiceTema]);
 		
 		alugueis[qtdAtualAluguel] = a;
