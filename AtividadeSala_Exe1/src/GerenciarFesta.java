@@ -193,7 +193,7 @@ public class GerenciarFesta {
 		t.setNome(nome);
 		t.setValorAluguel(valor);
 		t.setCorToalha(cor);
-		
+	
 		temas[qtdAtualTema] = t;
 		qtdAtualTema++;
 	}
