@@ -1,10 +1,15 @@
 
 public class Item {
+
 	private String nome;
-	private int qnt;
+	private int qtd;
 
 	public String getNome() {
 		return nome;
+	}
+
+	public int getQtd() {
+		return qtd;
 	}
 
 	public void setNome(String nome) {
@@ -15,13 +20,11 @@ public class Item {
 		}
 	}
 
-	public int getQnt() {
-		return qnt;
-	}
-
-	public void setQnt(int qnt) {
-		if (qnt > 0) {
-			this.qnt = qnt;
+	public void setQtd(int qtd) {
+		if (qtd >= 0) {
+			this.qtd = qtd;
+		} else {
+			System.out.println("Quantidade não pode ser negativa");
 		}
 	}
 }

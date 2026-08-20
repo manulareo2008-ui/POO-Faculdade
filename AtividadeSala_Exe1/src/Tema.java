@@ -1,8 +1,10 @@
 
 public class Tema {
-	private String nome;
+
+	private Item[] itens;
 	private float valorAluguel;
-	private Item[] item;
+	private String corToalha;
+	private String nome;
 
 	public String getNome() {
 		return nome;
@@ -12,8 +14,21 @@ public class Tema {
 		if (nome != null && !nome.isEmpty() && nome.length() >= 3) {
 			this.nome = nome;
 		} else {
-			System.out.println("O nome deve ser preenchido");
+			System.out.println("Nome deve ser preenchido");
 		}
+	}
+
+	public Item[] getItens() {
+		return itens;
+	}
+
+	public void setItens(Item[] itens) {
+		if (itens != null) {
+			this.itens = itens;
+		} else {
+			System.out.println("Itens devem ser informados");
+		}
+
 	}
 
 	public float getValorAluguel() {
@@ -24,16 +39,20 @@ public class Tema {
 		if (valorAluguel > 0) {
 			this.valorAluguel = valorAluguel;
 		} else {
-			System.out.println("O valor do aluguel deve ser preenchido");
+			System.out.println("Aluguel deve ser maior que 0");
 		}
 	}
 
-	public Item[] getItem() {
-		return item;
+	public String getCorToalha() {
+		return corToalha;
 	}
 
-	public void setItem(Item[] item) {
-		this.nome = nome;
+	public void setCorToalha(String corToalha) {
+		if (corToalha != null && !corToalha.isEmpty() && corToalha.length() >= 3) {
+			this.corToalha = corToalha;
+		} else {
+			System.out.println("Cor deve ser preenchida");
+		}
 	}
+
 }
-
