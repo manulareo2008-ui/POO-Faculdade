@@ -19,7 +19,7 @@ public class Produto {
 		}
 	}
 	
-	public void setValorUnitario(int valorUnitario) {
+	public void setValorUnitario(float valorUnitario) {
 		if(valorUnitario > 0) {
 			this.valorUnitario = valorUnitario;
 		} else {
