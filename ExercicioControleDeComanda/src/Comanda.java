@@ -1,68 +1,58 @@
 import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Comanda {
-	//private ItemProduto[] itens;
+	private List<ItemProduto> listaProdutos;
 	private int numero;
-	//private int qntAtualProduto;
-	private List<ItemProduto> itens;
 
 	public Comanda() {
-		//itens = new ItemProduto[20];
-	    //qntAtualProduto = 0;
-		itens = new Arreylisy<ItemProduto>();
+		listaProdutos = new ArrayList<ItemProduto>();
 	}
 
-	public ItemProduto[] getItens() {
-		return itens;
-	}
-
-	public int numeracao() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setItemProduto(ItemProduto[] item) {
-		this.itens = itens;
+	public List<ItemProduto> getListaProdutos() {
+		return listaProdutos;
 	}
 
 	public void setNumero(int numero) {
 		if (numero > 0) {
 			this.numero = numero;
 		} else {
-			System.out.println("A numeração não pode ser meno ou igual a 0");
+			JOptionPane.showMessageDialog(null, "O número da comanda deve ser maior do que 0");
 		}
 	}
 
 	public void addItem(ItemProduto item) {
-		if (item == null) {
-			System.out.println("Item deve ser informado");
-		} else {
-			//itens[qntAtualProduto] = item;
-			//qntAtualProduto++;
-			itens.add(item);
+		if (item != null) {
+			listaProdutos.add(item);
 		}
 	}
 
+	public double valorTotal() {
+		double total = 0;
+		for (int i = 0; i < listaProdutos.size(); i++) {
+			total += listaProdutos.get(i).getSubtotal();
+		}
+		return total;
+	}
+
 	public String imprimirComanda() {
-		String dados = "";
-
-		// System.out.println(numero);
-		dados += numero;
-		for (int i = 0; i < itens.size(); i++) {
-			// System.out.print(itens[i].getProduto().getNome() + " R$"
-			// + itens[i].getProduto().getValorUnitario() + " - "
-			// + itens[i].getQuantidade());
-
-			dados += (itens.get(i).getProduto().getNome() + " R$" + itens.get(i).getProduto().getValorUnitario() + " - "
-					+ itens.get(i).getQuantidade());
-
-			if (itens.get(i).getQuantidade() == 1) {
-				// System.out.println(" item");
-				dados += " item\n";
+		String dados = "Comanda n " + numero + "\n";
+		for (int i = 0; i < listaProdutos.size(); i++) {
+			dados += listaProdutos.get(i).getProduto().getNome() + " R$"
+					+ listaProdutos.get(i).getProduto().getValorUnitario() + " -"
+					+ listaProdutos.get(i).getQuantidade();
+			if(listaProdutos.get(i).getQuantidade() == 1) {
+				dados += "item\n";
 			} else {
-				// System.out.println(" itens");
-				dados += " itens\n";
+				dados += "itens \n";
 			}
 		}
+		dados += "Total: R$" + valorTotal();
 		return dados;
 	}
 }

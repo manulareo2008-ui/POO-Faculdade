@@ -1,29 +1,31 @@
+import javax.swing.JOptionPane;
 
 public class Produto {
+	private double valorUnitario;
 	private String nome;
-	private float valorUnitario;
-	
+
+	public double getValorUnitario() {
+		return valorUnitario;
+	}
+
 	public String getNome() {
 		return nome;
 	}
-	
-	public float getValorUnitario() {
-		return valorUnitario;
-	}
-	
-	public void setNome(String nome) {
-		if(nome != null && nome.isBlank()) {
-			this.nome = nome;
-		} else {
-			System.out.println("O nome do produto deve ser atribuido");
-		}
-	}
-	
-	public void setValorUnitario(float valorUnitario) {
-		if(valorUnitario > 0) {
+
+	public void setValorUnitario(double valorUnitario) {
+		if (valorUnitario > 0) {
 			this.valorUnitario = valorUnitario;
 		} else {
-			System.out.println("O valor do produto deve ser maior do que 0");
+			JOptionPane.showMessageDialog(null, "O valor unitario deve ser superior a R$0.");
+		}
+	}
+
+	public void setNome(String nome) {
+		if (nome != null && !nome.isBlank()) {
+			this.nome = nome;
+		} else {
+			JOptionPane.showMessageDialog(null, "O nome deve ser preenchido");
 		}
 	}
 }
+
