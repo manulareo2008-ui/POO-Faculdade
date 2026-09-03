@@ -3,23 +3,23 @@ import javax.swing.JOptionPane;
 public class Principal {
 
 	public Principal() {
-		Produto p1 = new Produto();
+		//Produto p1 = new Produto();
 
 		String nomeProduto1 = JOptionPane.showInputDialog("Qual o produto 1: ");
 		String valorProduto1 = JOptionPane.showInputDialog("Qual o valor do produto 1: ");
 		double valor1 = Double.parseDouble(valorProduto1);
+		
+		Produto p1 = new Produto(nomeProduto1, valor1);
+		//p1.setNome(nomeProduto1);
+		//p1.setValorUnitario(valor1);
 
-		p1.setNome(nomeProduto1);
-		p1.setValorUnitario(valor1);
+		Produto p2 = new Produto("Leite", 4);
 
-		Produto p2 = new Produto();
-
-		String nomeProduto2 = JOptionPane.showInputDialog("Qual o nome do produto 2: ");
-		String valorProduto2 = JOptionPane.showInputDialog("Qual o valor do produto 2: ");
-		double valor2 = Double.parseDouble(valorProduto2);
-
-		p2.setNome(nomeProduto2);
-		p2.setValorUnitario(valor2);
+		//String nomeProduto2 = JOptionPane.showInputDialog("Qual o nome do produto 2: ");
+		//String valorProduto2 = JOptionPane.showInputDialog("Qual o valor do produto 2: ");
+		//double valor2 = Double.parseDouble(valorProduto2);
+		//p2.setNome(nomeProduto2);
+		//p2.setValorUnitario(valor2);
 
 		ItemProduto item1 = new ItemProduto();
 		item1.setProduto(p1);

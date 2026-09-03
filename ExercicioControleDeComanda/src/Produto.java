@@ -3,6 +3,11 @@ import javax.swing.JOptionPane;
 public class Produto {
 	private double valorUnitario;
 	private String nome;
+	
+	public Produto(String nome, double valor1) {
+		setNome(nome);
+		setValorUnitario(valor1);
+	}
 
 	public double getValorUnitario() {
 		return valorUnitario;
@@ -28,4 +33,3 @@ public class Produto {
 		}
 	}
 }
-

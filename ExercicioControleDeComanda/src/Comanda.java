@@ -41,18 +41,19 @@ public class Comanda {
 	}
 
 	public String imprimirComanda() {
-		String dados = "Comanda n " + numero + "\n";
-		for (int i = 0; i < listaProdutos.size(); i++) {
-			dados += listaProdutos.get(i).getProduto().getNome() + " R$"
-					+ listaProdutos.get(i).getProduto().getValorUnitario() + " -"
-					+ listaProdutos.get(i).getQuantidade();
-			if(listaProdutos.get(i).getQuantidade() == 1) {
-				dados += "item\n";
+		String dados = "";
+		for (ItemProduto item : listaProdutos) {
+			dados += item.getProduto().getNome() + " R$" + item.getProduto().getValorUnitario() + " - "
+					+ item.getQuantidade();
+
+			if (item.getQuantidade() == 1) {
+				dados += " item\n";
 			} else {
-				dados += "itens \n";
+				dados += " itens\n";
 			}
 		}
-		dados += "Total: R$" + valorTotal();
+		
+		dados += "\nTotal: R$" + valorTotal(); 
 		return dados;
 	}
 }
