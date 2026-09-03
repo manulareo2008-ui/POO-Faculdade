@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 public class ItemProduto {
 	private Produto produto;
@@ -11,15 +12,24 @@ public class ItemProduto {
 		return quantidade;
 	}
 	
-	public void setProduto (Produto produto) {
-		this.produto = produto;
+	public void setProduto(Produto produto) {
+		if(produto != null) {
+			this.produto = produto;
+		} else {
+			JOptionPane.showMessageDialog(null, "O produto deve ser informado.");
+		}
 	}
 	
 	public void setQuantidade(int quantidade) {
 		if(quantidade > 0) {
 			this.quantidade = quantidade;
 		} else {
-			System.out.println("A quantidade do produto deve ser mais do que 0");
+			JOptionPane.showMessageDialog(null, "A quantidade deve ser superior a 0");
 		}
+	}
+	
+	public double getSubtotal() {
+		double total = quantidade * produto.getValorUnitario();
+		return total;
 	}
 }
