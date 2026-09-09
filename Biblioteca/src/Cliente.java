@@ -1,8 +1,7 @@
-import javax.swing.JOptionPane;
 
 public class Cliente {
-	private String nome;
 	private int codigo;
+	private String nome;
 	private String email;
 	
 	public Cliente(int codigo, String nome, String email) {
@@ -24,26 +23,34 @@ public class Cliente {
 	}
 	
 	public void setCodigo(int codigo) {
-		if(codigo > 0) {
-			this.codigo = codigo;
+		if(codigo <= 0) {
+			System.out.println("O código deve ser maior do que 0");
 		} else {
-			JOptionPane.showMessageDialog(null, "o código deve ser maior do que 0");
+			this.codigo = codigo;
 		}
 	}
 	
 	public void setNome(String nome) {
-		if(nome != null && !nome.isBlank()) {
-			this.nome = nome;
+		if(nome == null || nome.isBlank()) {
+			System.out.println("O nome deve ser preenchido");
+		} else if(nome.length() < 3) {
+			System.out.println("O nome deve ter mais do que 2 caracteres");
 		} else {
-			JOptionPane.showMessageDialog(null, "O nome deve ser preenchido");
+			this.nome = nome;
 		}
 	}
 	
 	public void setEmail(String email) {
-		if(email != null && !email.isBlank()) {
-			this.email = email;
+		if(email == null || email.isBlank()) {
+			System.out.println("O e-mail deve ser preenchido");
+		} else if(email.length() < 3) {
+			System.out.println("O e-mail deve ter no minimo 3 caracteres");
 		} else {
-			JOptionPane.showMessageDialog(null, "O e-mail deve ser preenchido");
+			this.email = email;
 		}
+	}
+	
+	public String imprimirDados() {
+		return getCodigo() + " - " + getNome() + " (" + getEmail() + ")";
 	}
 }
