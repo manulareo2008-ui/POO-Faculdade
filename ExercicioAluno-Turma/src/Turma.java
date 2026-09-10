@@ -18,116 +18,105 @@ public class Turma {
 		return alunos;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome) throws IllegalArgumentException {
 		if (nome == null || nome.isBlank()) {
-			System.out.println("O nome deve ser informado");
+			throw new IllegalArgumentException("O nome deve ser informado");
 		} else if (nome.length() < 3) {
-			System.out.println("O nome deve ter mais do que 2 caracteres");
-		} else {
-			this.nome = nome;
+			throw new IllegalArgumentException("O nome deve ter no mínimo 3 caracteres");
 		}
+
+		this.nome = nome;
 	}
 
 	public void setAlunos(List<Aluno> alunos) {
 		if (alunos == null) {
-			System.out.println("Os dados do aluno devem ser informados");
+			throw new IllegalArgumentException("A lista de alunos não pode ser vazia");
+		}
+
+		this.alunos = alunos;
+	}
+
+	public void addAluno(Aluno aluno) throws IllegalArgumentException {
+		if (aluno != null) {
+			this.alunos.add(aluno);
 		} else {
-			this.alunos = alunos;
+			throw new IllegalArgumentException("ALuno deve ser informado");
 		}
 	}
 
-	public void cadastrarAlunoNovo(Aluno aluno) {
-		if (aluno == null) {
-			System.out.println("Os dados do aluno devem ser informados");
-		} else {
-			alunos.add(aluno);
-		}
-	}
-
-	public Aluno buscarAlunoPeloNome(String nome) {
-		if (nome != null) {
-			for (Aluno a : alunos) {
-				if (a.getNome().equals(nome)) {
-					return a;
-				}
+	public Aluno buscarAluno(String nome) {
+		for (Aluno a : alunos) {
+			if (a.getNome().equals(nome)) {
+				return a;
 			}
 		}
 		return null;
 	}
 
-	public boolean alterarInformacoesAluno(String nomeAtual, 
-			String novoNome, double n1, double n2, double n3) {
-		
-		Aluno alunoAtual = buscarAlunoPeloNome(nomeAtual);
-		if(alunoAtual == null) {
-			return false;
-		} else {
-			alunoAtual.setNome(novoNome);
-			if(n1 >= 0 && n1 <= 10) {
-				alunoAtual.setNota1(n1);
-			}
-			if(n2 >= 0 && n2 <= 10) {
-				alunoAtual.setNota2(n2);
-			}
-			if(n3 >= 0 && n3 <= 10) {
-				alunoAtual.setNota3(n3);
-				
-			}
-			return true;
-		} 
-	}
-
-	public boolean excluirAlunoDaTurma(String nome) {
-		Aluno a = buscarAlunoPeloNome(nome);
+	public boolean alterarInformacoes(String nomeAtual, String novoNome, float[] notas) {
+		Aluno a = buscarAluno(nomeAtual);
 		if (a == null) {
 			return false;
-		} else {
-			alunos.remove(a);
-			return true;
 		}
+		if (novoNome != null) {
+			a.setNome(novoNome);
+		}
+		if (notas != null) {
+			a.setNotas(notas);
+		}
+		return true;
 	}
 
+	public boolean excluirAluno(String nome) throws IllegalArgumentException {
+		Aluno a = buscarAluno(nome);
+
+		if (a == null) {
+			return false;
+		}
+
+		alunos.remove(a);
+		return true;
+	}
+	
 	public String listarAlunos() {
 		String dados = "";
-		for (Aluno a : alunos) {
-			dados += a.getNome() + " - Média: " + a.calcularMedia() + "\n";
+		for(Aluno a: alunos) {
+			dados += a.imprimirDados() + "\n";
 		}
 		return dados;
 	}
-
-	public double calcularMediaTurma() {
-		if (alunos.isEmpty()) {
+	
+	public float mediaGeral() {
+		if(alunos.isEmpty()) {
 			return 0;
 		}
-		double total = 0;
-		for (Aluno a : alunos) {
-			total += a.calcularMedia();
+		float media = 0;
+		for(Aluno a: alunos) {
+			media += a.calcularMedia();
 		}
-		return total / alunos.size();
+		return media / alunos.size();
 	}
-
-	public Aluno identificarAlunoComMaiorNota() {
-		if (alunos.isEmpty()) {
+	
+	public Aluno maiorMedia() {
+		if(alunos.isEmpty()) {
 			return null;
 		}
 		Aluno maior = alunos.get(0);
-		for (Aluno a : alunos) {
-			if (a.calcularMedia() > maior.calcularMedia()) {
+		for(Aluno a: alunos) {
+			if(a.calcularMedia() > maior.calcularMedia()) {
 				maior = a;
 			}
 		}
 		return maior;
 	}
 	
-	public int informarQntAlunosAcimaOuIgualAMedia7() {
-		
+	public int qntAcimaMedia(){
 		int qnt = 0;
 		for(Aluno a: alunos) {
 			if(a.calcularMedia() >= 7) {
 				qnt++;
 			}
 		}
-		
 		return qnt;
 	}
 }
