@@ -35,4 +35,8 @@ public class Dono {
 			this.telefone = telefone;
 		}
 	}
+	
+	public String imprimirDados() {
+		return getNome() + " - " + getTelefone();
+	}
 }
