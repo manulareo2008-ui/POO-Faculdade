@@ -6,12 +6,12 @@ public class Voo {
 	private String horarioPrevisto;
 	private Aeronave aeronave;
 	
-	public Voo(int numero, String destino, int qntPassageiros, String horarioPrevisto, Aeronave aeronave) {
+	public Voo(Aeronave aeronave, int numero, String destino, int qntPassageiros, String horarioPrevisto) {
+		setAeronave(aeronave);
 		setNumero(numero);
 		setDestino(destino);
 		setQntPassageiros(qntPassageiros);
 		setHorarioPrevisto(horarioPrevisto);
-		setAeronave(aeronave);
 	}
 	
 	public int getNumero() {
@@ -46,7 +46,7 @@ public class Voo {
 		if(destino == null || destino.isBlank()) {
 			throw new IllegalArgumentException("O destino deve ser informado");
 		}
-		if(destino.length() <= 3) {
+		if(destino.length() < 3) {
 			throw new IllegalArgumentException("O destino deve ter pelo menos 3 letras");
 		}
 		
@@ -54,8 +54,8 @@ public class Voo {
 	}
 	
 	public void setQntPassageiros(int qntPassageiros) throws IllegalArgumentException {
-		if(qntPassageiros <= 0 || qntPassageiros > aeronave.getCapacidadeMaxima()) {
-			throw new IllegalArgumentException("O número de passageiros da aeronave não pode ser menor ou igual a 0 e nem maior do que o número máximo permitido");
+		if(qntPassageiros < 0 || qntPassageiros > aeronave.getCapacidadeMaxima()) {
+			throw new IllegalArgumentException("O número de passageiros da aeronave não pode ser menor do que 0 e nem maior do que o número máximo permitido");
 		}
 		
 		this.qntPassageiros = qntPassageiros;
@@ -77,7 +77,7 @@ public class Voo {
 		this.aeronave = aeronave;
 	}
 	
-	public String imprimirdados() {
-		return getNumero() + " - " + getDestino() + " - " + getQntPassageiros() + " - "  + getHorarioPrevisto() + " - " + getAeronave();		
+	public String imprimirDados() {
+		return getNumero() + " - " + getDestino() + " - " + getQntPassageiros() + " - "  + getHorarioPrevisto() + " - " + getAeronave().getModelo();		
 	}
 }

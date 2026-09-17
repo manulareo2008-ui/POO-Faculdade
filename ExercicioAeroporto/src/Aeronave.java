@@ -31,7 +31,7 @@ public class Aeronave {
 	}
 
 	public void setModelo(String modelo) throws IllegalArgumentException {
-		if (modelo == null || modelo.isEmpty()) {
+		if (modelo == null || modelo.isBlank()) {
 			throw new IllegalArgumentException("O modelo deve ser informado");
 		}
 		if (modelo.length() < 3) {
