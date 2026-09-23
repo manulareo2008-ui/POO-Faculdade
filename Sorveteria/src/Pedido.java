@@ -43,14 +43,6 @@ public class Pedido {
 		this.nomeCliente = nomeCliente;
 	}
 
-	public void setSorvetes(List<Sorvete> sorvetes) {
-		if (sorvetes == null) {
-			throw new IllegalArgumentException("O sorvete devem ser preenchidos");
-		}
-
-		this.sorvetes = sorvetes;
-	}
-
 	public Sorvete identificarSorvete(String nome) {
 		for (Sorvete s : sorvetes) {
 			if (s.getNome().equals(nome)) {
@@ -64,28 +56,19 @@ public class Pedido {
 		Sorvete sabor = identificarSorvete(nome);
 		if (sabor == null) {
 			return false;
-		} else {
-			for (Sorvete s : sorvetes) {
-				if (s.getNome().equals(nome)) {
-					sorvetes.remove(s);
-				}
-			}
-			return true;
 		}
+		sorvetes.remove(sabor);
+		return true;
 	}
 
-	public void cadastrarSorvete(Sorvete nome) {
-		if (nome != null) {
-			sorvetes.add(nome);
+	public void cadastrarSorvete(Sorvete sorvete) {
+		if (sorvete != null) {
+			sorvetes.add(sorvete);
 		}
 	}
 
 	public int qntDeSorvetesNoPedido() {
-		int qnt = 0;
-		for (int i = 0; i < sorvetes.size(); i++) {
-			qnt++;
-		}
-		return qnt;
+		return sorvetes.size();
 	}
 
 	public Sorvete sorveteComMaiorNome() {
@@ -100,29 +83,25 @@ public class Pedido {
 		}
 		return maior;
 	}
-	
-	public int qntSorvetesPorSabor(String nome) {
-		Sorvete sabor = identificarSorvete(nome);
-		if(sabor == null) {
-			return 0;
-		}
-		int qnt = 0;
-		for(Sorvete s: sorvetes) {
-			if(s.getNome().equals(nome)) {
-				qnt++;
-			}
-		}
-		return qnt;
+
+	public int qntSorvetesPorSabor(String sabor) {
+	    int qnt = 0;
+	    for (Sorvete s : sorvetes) {
+	        if (s.getSabor().equals(sabor)) {
+	            qnt++;
+	        }
+	    }
+	    return qnt;
 	}
-	
+
 	public String listarSabores() {
-		String sabores = "";
-		for(Sorvete s: sorvetes) {
-			sabores += s.getNome() + "\n";
+		String dados = "";
+		for (Sorvete s : sorvetes) {
+			dados += s.imprimirDados() + "\n";
 		}
-		return sabores;
+		return dados;
 	}
-	
+
 	public String imprimirDados() {
 		return getNumero() + " - " + getNomeCliente() + "\n" + listarSabores();
 	}
