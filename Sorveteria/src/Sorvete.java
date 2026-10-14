@@ -46,7 +46,7 @@ public class Sorvete {
 	
 	public void setPreco(float preco) throws IllegalArgumentException {
 		if(preco <= 0) {
-			throw new IllegalArgumentException("O preco do sorvete deve possuir pelo menos 3 caracteres");
+			throw new IllegalArgumentException("O preco do sorvete deve ser maior do que 0");
 		}
 		
 		this.preco = preco;
