@@ -1,11 +1,13 @@
-package heranca; // pacote 'heranca': mesmo nome da pasta em src/ (tem que casar, senao da erro)
+package heranca; 
+
+import excecao.*;
 
 public class Cliente {
 	private String nome;
 	private String endereco;
 
 	public Cliente(String nome, String endereco) {
-		setNome(nome);     // construtor chama os setters => validacao vale pra todo caminho
+		setNome(nome); 
 		setEndereco(endereco);
 	}
 
@@ -17,23 +19,23 @@ public class Cliente {
 		return endereco;
 	}
 
-	public void setNome(String nome) throws IllegalArgumentException {
-		if (nome == null || nome.isBlank()) { // null testado PRIMEIRO (curto-circuito do ||)
-			throw new IllegalArgumentException("O nome deve ser preenchido");
+	public void setNome(String nome) throws CampoVazioException, Maior3CaracteresException {
+		if (nome == null || nome.isBlank()) {
+			throw new CampoVazioException("Nome");
 		}
 		if (nome.length() < 3) {
-			throw new IllegalArgumentException("O nome deve possuir pelo menos 3 caracteres");
+			throw new Maior3CaracteresException("Nome");
 		}
 
 		this.nome = nome;
 	}
 
-	public void setEndereco(String endereco) throws IllegalArgumentException {
+	public void setEndereco(String endereco) throws CampoVazioException, Maior3CaracteresException {
 		if (endereco == null || endereco.isBlank()) {
-			throw new IllegalArgumentException("O endereco deve ser preenchido");
+			throw new CampoVazioException("Endereço");
 		}
 		if (endereco.length() < 3) {
-			throw new IllegalArgumentException("O endereco deve possuir pelo menos 3 caracteres");
+			throw new Maior3CaracteresException("Endereço");
 		}
 
 		this.endereco = endereco;
