@@ -4,3 +4,6 @@ public class CampoVazioException extends IllegalArgumentException {
 		super(campo + " deve ser preenchido");
 	}
 }
+
+
+adaad
