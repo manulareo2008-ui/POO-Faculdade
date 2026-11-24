@@ -1,0 +1,2 @@
+Primeira linha
+truePreço:              1234,50nova linha
