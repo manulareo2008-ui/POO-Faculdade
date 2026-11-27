@@ -1,0 +1,6 @@
+RELATORIO DE NOTAS
+Ana;7.5;APROVADO
+Caio;6.0;APROVADO
+Total aprovados: 2
+Total reprovados 0
+Nota média das notas válidas: 6.75

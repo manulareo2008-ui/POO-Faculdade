@@ -1,0 +1,6 @@
+Ana;7.5
+Bia
+Caio;6.0
+dani;abc
+jorge;100
+;5

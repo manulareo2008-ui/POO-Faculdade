@@ -1,0 +1,13 @@
+ARQUIVO DE REPOSIÇÃO
+Unidades faltantes para chegar a 5: 3
+Produto: tijolo
+Quantidade atual: 2
+Unidades faltantes para chegar a 5: 1
+Produto: copo
+Quantidade atual: 4
+Unidades faltantes para chegar a 5: 1
+Produto: 100
+Quantidade atual: 4
+Total de produtos que precisam de reposição: 3
+Valor total do estoque: R$920.0
+Produto de maior preço: prato

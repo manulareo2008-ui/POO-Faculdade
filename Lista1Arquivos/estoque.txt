@@ -1,0 +1,7 @@
+tijolo;2;50
+copo;4;5
+;0;80
+100;4;50
+prato;6;100
+garfo;5;-10
+colher;-1;10
